@@ -1371,7 +1371,7 @@ function! s:match_conceal_fancy() abort " {{{1
   syntax match texCmd         '\\colon\>' conceal cchar=:
   syntax match texCmd         '\\dots'    conceal cchar=…
   syntax match texCmd         '\\ldots'   conceal cchar=…
-  syntax match texCmdItem     '\\item\>'  conceal cchar=○
+  syntax match texCmdItem     '\\item\>'  conceal cchar=•
   syntax match texTabularChar '\\\\'      conceal cchar=⏎
 endfunction
 
