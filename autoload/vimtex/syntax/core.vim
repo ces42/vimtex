@@ -230,10 +230,12 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   syntax match texLetArgEqual contained nextgroup=texLetArgBody skipwhite skipnl "="
 
   " Reference and cite commands
-  syntax match texCmdRef nextgroup=texRefArg           skipwhite skipnl "\\nocite\>"
-  syntax match texCmdRef nextgroup=texRefArg           skipwhite skipnl "\\label\>"
-  syntax match texCmdRef nextgroup=texRefArg           skipwhite skipnl "\\\(page\|eq\)ref\>"
-  syntax match texCmdRef nextgroup=texRefArg           skipwhite skipnl "\\v\?ref\>"
+  syntax match texCmdRef nextgroup=texRefArg skipwhite skipnl "\v\\%(
+        \nocite
+        \|label
+        \|%(page|eq|v)?ref
+        \)>"
+
   syntax match texCmdRef nextgroup=texRefOpt,texRefArg skipwhite skipnl "\\cite\>"
   syntax match texCmdRef nextgroup=texRefOpt,texRefArg skipwhite skipnl "\\cite[tp]\>\*\?"
   call vimtex#syntax#core#new_opt('texRefOpt', {'next': 'texRefOpt,texRefArg'})
