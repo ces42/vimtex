@@ -150,9 +150,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   syntax match texCmdBib     nextgroup=texFilesArg             skipwhite skipnl "\\bibliography\>"
   syntax match texCmdBib     nextgroup=texFileArg              skipwhite skipnl "\\bibliographystyle\>"
   syntax match texCmdClass   nextgroup=texFileOpt,texFileArg   skipwhite skipnl "\\document\%(class\|style\)\>"
-  syntax match texCmdPackage nextgroup=texFilesOpt,texFilesArg skipwhite skipnl "\\usepackage\>"
-  syntax match texCmdPackage nextgroup=texFilesOpt,texFilesArg skipwhite skipnl "\\RequirePackage\>"
-  syntax match texCmdPackage nextgroup=texFilesOpt,texFilesArg skipwhite skipnl "\\ProvidesPackage\>"
+  syntax match texCmdPackage nextgroup=texFilesOpt,texFilesArg skipwhite skipnl "\v\\(usepackage|RequirePackage|ProvidesPackage)>"
   call vimtex#syntax#core#new_arg('texFileArg', {'contains': '@NoSpell,texCmd,texComment'})
   call vimtex#syntax#core#new_arg('texFilesArg', {'contains': '@NoSpell,texCmd,texComment,texOptSep'})
   call vimtex#syntax#core#new_opt('texFileOpt', {'next': 'texFileArg'})
