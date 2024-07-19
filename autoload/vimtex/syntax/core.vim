@@ -110,7 +110,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   syntax match texCmdSpaceCodeChar "\v`\\?.%(\^.)?\?%(\d|\"\x{1,6}|`.)" contained
 
   " Todo commands
-  syntax match texCmdTodo '\\todo\w*'
+  syntax match texCmdTodo "\\todo\w*"
 
   " \author
   syntax match texCmdAuthor nextgroup=texAuthorOpt,texAuthorArg skipwhite skipnl "\\author\>"
@@ -395,7 +395,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   " Source: https://github.com/lervag/vimtex/issues/562
   syntax match texCommentURL "\w\+:\/\/[^[:space:]]\+"
         \ containedin=texComment contained contains=@NoSpell
-  syntax match texCommentAcronym '\v<(\u|\d){3,}s?>'
+  syntax match texCommentAcronym "\v<(\u|\d){3,}s?>"
         \ containedin=texComment contained contains=@NoSpell
 
   " Todo and similar within comments
@@ -1564,9 +1564,9 @@ function! s:match_math_symbols() abort " {{{1
   " Many of these symbols were contributed by Björn Winckler
   if !g:vimtex_syntax_conceal.math_symbols | return | endif
 
-  syntax match texMathSymbol '\\|'                   contained conceal cchar=‖
-  syntax match texMathSymbol '\\sqrt\[3]'            contained conceal cchar=∛
-  syntax match texMathSymbol '\\sqrt\[4]'            contained conceal cchar=∜
+  syntax match texMathSymbol "\\|"                   contained conceal cchar=‖
+  syntax match texMathSymbol "\\sqrt\[3]"            contained conceal cchar=∛
+  syntax match texMathSymbol "\\sqrt\[4]"            contained conceal cchar=∜
 
   for [l:cmd, l:symbol] in s:cmd_symbols
     execute 'syntax match texMathSymbol'
@@ -1987,20 +1987,20 @@ let s:cmd_pairs_dict = {
 function! s:match_math_fracs() abort " {{{1
   if !g:vimtex_syntax_conceal.math_fracs | return | endif
 
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(2\|{2}\)' contained conceal cchar=½
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(3\|{3}\)' contained conceal cchar=⅓
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(3\|{3}\)' contained conceal cchar=⅔
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(4\|{4}\)' contained conceal cchar=¼
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(5\|{5}\)' contained conceal cchar=⅕
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(5\|{5}\)' contained conceal cchar=⅖
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(5\|{5}\)' contained conceal cchar=⅗
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(4\|{4}\)\s*\%(5\|{5}\)' contained conceal cchar=⅘
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(6\|{6}\)' contained conceal cchar=⅙
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(6\|{6}\)' contained conceal cchar=⅚
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(8\|{8}\)' contained conceal cchar=⅛
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(8\|{8}\)' contained conceal cchar=⅜
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(8\|{8}\)' contained conceal cchar=⅝
-  syntax match texMathSymbol '\\[dt]\?frac\s*\%(7\|{7}\)\s*\%(8\|{8}\)' contained conceal cchar=⅞
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(2\|{2}\)" contained conceal cchar=½
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(3\|{3}\)" contained conceal cchar=⅓
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(3\|{3}\)" contained conceal cchar=⅔
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(4\|{4}\)" contained conceal cchar=¼
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(5\|{5}\)" contained conceal cchar=⅕
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(5\|{5}\)" contained conceal cchar=⅖
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(5\|{5}\)" contained conceal cchar=⅗
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(4\|{4}\)\s*\%(5\|{5}\)" contained conceal cchar=⅘
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(6\|{6}\)" contained conceal cchar=⅙
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(6\|{6}\)" contained conceal cchar=⅚
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(8\|{8}\)" contained conceal cchar=⅛
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(8\|{8}\)" contained conceal cchar=⅜
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(8\|{8}\)" contained conceal cchar=⅝
+  syntax match texMathSymbol "\\[dt]\?frac\s*\%(7\|{7}\)\s*\%(8\|{8}\)" contained conceal cchar=⅞
 endfunction
 
 " }}}1
@@ -2202,13 +2202,13 @@ endfunction
 
 " }}}1
 function! s:match_conceal_fancy() abort " {{{1
-  syntax match texCmd         '\\colon\>' conceal cchar=:
-  syntax match texCmd         '\\dots\>'  conceal cchar=…
-  syntax match texCmd         '\\slash\>' conceal cchar=/
-  syntax match texCmd         '\\ldots\>' conceal cchar=…
-  syntax match texTabularChar '\\\\'      conceal cchar=⏎
+  syntax match texCmd         "\\colon\>" conceal cchar=:
+  syntax match texCmd         "\\dots\>"  conceal cchar=…
+  syntax match texCmd         "\\slash\>" conceal cchar=/
+  syntax match texCmd         "\\ldots\>" conceal cchar=…
+  syntax match texTabularChar "\\\\"      conceal cchar=⏎
 
-  syntax match texCmdItem     '\\item\>'  conceal cchar=○
+  syntax match texCmdItem     "\\item\>"  conceal cchar=○
         \ nextgroup=texItemLabelConcealed
   syntax match texItemLabelConcealed "\s*\[[^]]*\]"
         \ contained contains=texItemLabelDelim
@@ -2222,27 +2222,27 @@ function! s:match_conceal_spacing() abort " {{{1
   syntax match texSpecialChar "\\ "               conceal cchar= 
   syntax match texSpecialChar "\\[,;:!>]"         conceal
   syntax match texSpecialChar "\\@\ze\s\+"        conceal
-  syntax match texCmd         '\\bigskip\>'       conceal
-  syntax match texCmd         '\\hfill\>'         conceal
-  syntax match texCmd         '\\medspace\>'      conceal
-  syntax match texCmd         '\\qquad\>'         conceal
-  syntax match texCmd         '\\quad\>'          conceal
-  syntax match texCmd         '\\thickspace\>'    conceal
-  syntax match texCmd         '\\thinspace\>'     conceal
-  syntax match texCmd         '\\vfill\>'         conceal
+  syntax match texCmd         "\\bigskip\>"       conceal
+  syntax match texCmd         "\\hfill\>"         conceal
+  syntax match texCmd         "\\medspace\>"      conceal
+  syntax match texCmd         "\\qquad\>"         conceal
+  syntax match texCmd         "\\quad\>"          conceal
+  syntax match texCmd         "\\thickspace\>"    conceal
+  syntax match texCmd         "\\thinspace\>"     conceal
+  syntax match texCmd         "\\vfill\>"         conceal
   syntax match texCmd         "\\[hv]space\>"     conceal
         \ skipwhite nextgroup=texConcealedArg
   syntax match texCmd         "\\h\?phantom\>"    conceal
         \ skipwhite nextgroup=texConcealedArg
 
-  syntax match texMathCmd '\\bigskip\>'    contained conceal
-  syntax match texMathCmd '\\hfill\>'      contained conceal
-  syntax match texMathCmd '\\medspace\>'   contained conceal
-  syntax match texMathCmd '\\qquad\>'      contained conceal
-  syntax match texMathCmd '\\quad\>'       contained conceal
-  syntax match texMathCmd '\\thickspace\>' contained conceal
-  syntax match texMathCmd '\\thinspace\>'  contained conceal
-  syntax match texMathCmd '\\vfill\>'      contained conceal
+  syntax match texMathCmd "\\bigskip\>"    contained conceal
+  syntax match texMathCmd "\\hfill\>"      contained conceal
+  syntax match texMathCmd "\\medspace\>"   contained conceal
+  syntax match texMathCmd "\\qquad\>"      contained conceal
+  syntax match texMathCmd "\\quad\>"       contained conceal
+  syntax match texMathCmd "\\thickspace\>" contained conceal
+  syntax match texMathCmd "\\thinspace\>"  contained conceal
+  syntax match texMathCmd "\\vfill\>"      contained conceal
   syntax match texMathCmd "\\[hv]space\>"  contained conceal
         \ skipwhite nextgroup=texConcealedArg
   syntax match texMathCmd "\\h\?phantom\>" contained conceal
