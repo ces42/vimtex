@@ -2013,8 +2013,8 @@ function! s:match_math_delims() abort " {{{1
         \|backslash
         \|[uU]%(down)?parrow
         \|[dD]ownarrow
-        \|[{}]
         \)>"
+  syntax match texMathDelim contained "\\[{}]"
 
   if !g:vimtex_syntax_conceal.math_delimiters || &encoding !=# 'utf-8'
     return
