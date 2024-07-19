@@ -8,6 +8,10 @@
 scriptencoding utf-8
 
 function! vimtex#syntax#core#init_rules() abort " {{{1
+  " Operators and similar
+  syntax match texMathOper "\%#=1[-+=/<>|]" contained
+  syntax match texMathSuperSub "\%#=1[_^]" contained
+  syntax match texMathDelim contained "\%#=1[()[\]]"
   " {{{2 Define main syntax clusters
 
   syntax cluster texClusterOpt contains=
@@ -20,33 +24,21 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
         \texOptSep,
         \@NoSpell
 
+  " texSpecialChar needs to be included because of "~"
+  " texTabularChar needs to be included because of "&"
+  " texCmdGreek and texMathSymbol need to be included because of unicode
   syntax cluster texClusterMath contains=
-        \texCmdEnvM,
-        \texCmdFootnote,
-        \texCmdGreek,
-        \texCmdMinipage,
-        \texCmdParbox,
-        \texCmdRef,
-        \texCmdSize,
-        \texCmdStyle,
-        \texCmdTodo,
-        \texCmdVerb,
         \texComment,
         \texGroupError,
-        \texMathCmd,
-        \texMathCmdEnv,
-        \texMathCmdStyle,
-        \texMathCmdStyleBold,
-        \texMathCmdStyleItal,
-        \texMathCmdText,
         \texMathDelim,
-        \texMathDelimMod,
         \texMathGroup,
         \texMathOper,
         \texMathSuperSub,
-        \texMathSymbol,
         \texSpecialChar,
+        \texCmdGreek,
+        \texMathSymbol,
         \texTabularChar,
+        \_texMathBackslash,
         \@NoSpell
 
   " }}}2
@@ -572,9 +564,6 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   " Bad/Mismatched math
   call s:match_texMathError()
 
-  " Operators and similar
-  syntax match texMathOper "[-+=/<>|]" contained
-  syntax match texMathSuperSub "[_^]" contained
 
   " Text Inside Math regions
   for l:re_cmd in [
@@ -669,6 +658,36 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   " }}}2
 
   let b:current_syntax = 'tex'
+
+  " note: texCmdGreek and texMathSymbol also need to be included again
+  " in texClusterMath because of unicode
+  " texComment needs to be included here because of \iffalse
+  " texSpecialChar, texTabularChar and texMathDelim also appear in both lists
+  syntax match _texMathBackslash "\\"me=e-1 contained nextgroup=
+        \texComment,
+        \texSpecialChar,
+        \texCmdGreek,
+        \texMathSymbol,
+        \texTabularChar,
+        \texCmdEnvM,
+        \texCmdFootnote,
+        \texCmdMinipage,
+        \texCmdParbox,
+        \texCmdRef,
+        \texCmdSize,
+        \texCmdStyle,
+        \texCmdTodo,
+        \texCmdVerb,
+        \texMathCmd,
+        \texMathCmdEnv,
+        \texMathCmdStyle,
+        \texMathCmdStyleBold,
+        \texMathCmdStyleItal,
+        \texMathCmdText,
+        \texMathDelimMod,
+        \texMathDelim,
+        \@NoSpell
+
 endfunction
 
 function! s:match_texMathError() abort
@@ -1988,7 +2007,6 @@ endfunction
 function! s:match_math_delims() abort " {{{1
   syntax match texMathDelimMod contained "\\\%(left\|right\)\>"
   syntax match texMathDelimMod contained "\\[bB]igg\?[lr]\?\>"
-  syntax match texMathDelim contained "[()[\]]"
 
   syntax match texMathDelim contained "\v\\%(
         \[lr]%(vert|angle|brace|ceil|floor|group|moustache)
