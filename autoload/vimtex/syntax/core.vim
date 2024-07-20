@@ -702,12 +702,11 @@ function! vimtex#syntax#core#init_post() abort " {{{1
   let b:vimtex_syntax_did_postinit = 1
 
   " Add texTheoremEnvBgn for custom theorems
-  for l:envname in s:gather_newtheorems()
-    execute 'syntax match texTheoremEnvBgn'
-          \ printf('"\\begin{%s}"', l:envname)
-          \ 'nextgroup=texTheoremEnvOpt skipwhite skipnl'
-          \ 'contains=texCmdEnv'
-  endfor
+  "for l:envname in s:gather_newtheorems()
+  execute 'syntax match texTheoremEnvBgn'
+        \ '"\%#=1\\begin{\%(' .. join(s:gather_newtheorems(), '\|') ..'\)}"'
+        \ 'nextgroup=texTheoremEnvOpt skipwhite skipnl'
+        \ 'contains=texCmdEnv'
 
   call vimtex#syntax#packages#init()
 endfunction
