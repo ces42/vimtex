@@ -54,7 +54,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
 
   " E.g.:  \$ \& \% \# \{ \} \_ \S \P
   syntax match texSpecialChar "\~"
-  syntax match texSpecialChar "\\ "
+  syntax match texSpecialChar "\%#=1\\ "
   syntax match texSpecialChar "\%#=1\\[$&%#{}_@,;:!>]"
   syntax match texSpecialChar "\%#=1\\[SP@]\ze[^a-zA-Z@]"
   syntax match texSpecialChar "\%#=1\^\^\%(\S\|[0-9a-f]\{2}\)"
@@ -2019,69 +2019,69 @@ function! s:match_math_delims() abort " {{{1
     return
   endif
 
-  syntax match texMathDelim contained conceal cchar=| "\\left|\s*"
-  syntax match texMathDelim contained conceal cchar=| "\s*\\right|"
-  syntax match texMathDelim contained conceal cchar=‖ "\\left\\|\s*"
-  syntax match texMathDelim contained conceal cchar=‖ "\s*\\right\\|"
-  syntax match texMathDelim contained conceal cchar=| "\\lvert\>\s*"
-  syntax match texMathDelim contained conceal cchar=| "\s*\\rvert\>"
-  syntax match texMathDelim contained conceal cchar=‖ "\\lVert\>\s*"
-  syntax match texMathDelim contained conceal cchar=‖ "\s*\\rVert\>"
-  syntax match texMathDelim contained conceal cchar=( "\\left(\s*"
-  syntax match texMathDelim contained conceal cchar=) "\s*\\right)"
-  syntax match texMathDelim contained conceal cchar=[ "\\left\[\s*"
-  syntax match texMathDelim contained conceal cchar=] "\s*\\right]"
-  syntax match texMathDelim contained conceal cchar={ "\\{\s*"
-  syntax match texMathDelim contained conceal cchar=} "\s*\\}"
-  syntax match texMathDelim contained conceal cchar={ "\\left\\{\s*"
-  syntax match texMathDelim contained conceal cchar=} "\s*\\right\\}"
-  syntax match texMathDelim contained conceal cchar={ "\\lbrace\>\s*"
-  syntax match texMathDelim contained conceal cchar=} "\s*\\rbrace\>"
-  syntax match texMathDelim contained conceal cchar=⟨ "\\langle\>\s*"
-  syntax match texMathDelim contained conceal cchar=⟩ "\s*\\rangle\>"
-  syntax match texMathDelim contained conceal cchar=⌊ "\\lfloor\>\s*"
-  syntax match texMathDelim contained conceal cchar=⌋ "\s*\\rfloor\>"
-  syntax match texMathDelim contained conceal cchar=< "\\\%([bB]igg\?l\?\|left\)<\s*"
-  syntax match texMathDelim contained conceal cchar=> "\s*\\\%([bB]igg\?r\?\|right\)>"
-  syntax match texMathDelim contained conceal cchar=( "\\\%([bB]igg\?l\?\|left\)(\s*"
-  syntax match texMathDelim contained conceal cchar=) "\s*\\\%([bB]igg\?r\?\|right\))"
-  syntax match texMathDelim contained conceal cchar=[ "\\\%([bB]igg\?l\?\|left\)\[\s*"
-  syntax match texMathDelim contained conceal cchar=] "\s*\\\%([bB]igg\?r\?\|right\)]"
-  syntax match texMathDelim contained conceal cchar={ "\\\%([bB]igg\?l\?\|left\)\\{\s*"
-  syntax match texMathDelim contained conceal cchar=} "\s*\\\%([bB]igg\?r\?\|right\)\\}"
-  syntax match texMathDelim contained conceal cchar={ "\\\%([bB]igg\?l\?\|left\)\\lbrace\>\s*"
-  syntax match texMathDelim contained conceal cchar=} "\s*\\\%([bB]igg\?r\?\|right\)\\rbrace\>"
-  syntax match texMathDelim contained conceal cchar=⌈ "\\\%([bB]igg\?l\?\|left\)\\lceil\>\s*"
-  syntax match texMathDelim contained conceal cchar=⌉ "\s*\\\%([bB]igg\?r\?\|right\)\\rceil\>"
-  syntax match texMathDelim contained conceal cchar=⌊ "\\\%([bB]igg\?l\?\|left\)\\lfloor\>\s*"
-  syntax match texMathDelim contained conceal cchar=⌋ "\s*\\\%([bB]igg\?r\?\|right\)\\rfloor\>"
-  syntax match texMathDelim contained conceal cchar=⌊ "\\\%([bB]igg\?l\?\|left\)\\lgroup\>\s*"
-  syntax match texMathDelim contained conceal cchar=⌋ "\s*\\\%([bB]igg\?r\?\|right\)\\rgroup\>"
-  syntax match texMathDelim contained conceal cchar=⎛ "\\\%([bB]igg\?l\?\|left\)\\lmoustache\>\s*"
-  syntax match texMathDelim contained conceal cchar=⎞ "\s*\\\%([bB]igg\?r\?\|right\)\\rmoustache\>"
-  syntax match texMathDelim contained conceal cchar=| "\\\%([bB]igg\?l\?\|left\)|\s*"
-  syntax match texMathDelim contained conceal cchar=| "\s*\\\%([bB]igg\?r\?\|right\)|"
-  syntax match texMathDelim contained conceal cchar=‖ "\\\%([bB]igg\?l\?\|left\|\)\\|\s*"
-  syntax match texMathDelim contained conceal cchar=‖ "\s*\\\%([bB]igg\?r\?\|right\)\\|"
-  syntax match texMathDelim contained conceal cchar=↓ "\\\%([bB]igg\?l\?\|left\)\\downarrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=↓ "\s*\\\%([bB]igg\?r\?\|right\)\\downarrow\>"
-  syntax match texMathDelim contained conceal cchar=⇓ "\\\%([bB]igg\?l\?\|left\)\\Downarrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=⇓ "\s*\\\%([bB]igg\?r\?\|right\)\\Downarrow\>"
-  syntax match texMathDelim contained conceal cchar=↑ "\\\%([bB]igg\?l\?\|left\)\\uparrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=↑ "\s*\\\%([bB]igg\?r\?\|right\)\\uparrow\>"
-  syntax match texMathDelim contained conceal cchar=↑ "\\\%([bB]igg\?l\?\|left\)\\Uparrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=↑ "\s*\\\%([bB]igg\?r\?\|right\)\\Uparrow\>"
-  syntax match texMathDelim contained conceal cchar=↕ "\\\%([bB]igg\?l\?\|left\)\\updownarrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=↕ "\s*\\\%([bB]igg\?r\?\|right\)\\updownarrow\>"
-  syntax match texMathDelim contained conceal cchar=⇕ "\\\%([bB]igg\?l\?\|left\)\\Updownarrow\>\s*"
-  syntax match texMathDelim contained conceal cchar=⇕ "\s*\\\%([bB]igg\?r\?\|right\)\\Updownarrow\>"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\\left|\s*"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\s*\\right|"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\\left\\|\s*"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\s*\\right\\|"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\\lvert\>\s*"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\s*\\rvert\>"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\\lVert\>\s*"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\s*\\rVert\>"
+  syntax match texMathDelim contained conceal cchar=( "\%#=1\\left(\s*"
+  syntax match texMathDelim contained conceal cchar=) "\%#=1\s*\\right)"
+  syntax match texMathDelim contained conceal cchar=[ "\%#=1\\left\[\s*"
+  syntax match texMathDelim contained conceal cchar=] "\%#=1\s*\\right]"
+  syntax match texMathDelim contained conceal cchar={ "\%#=1\\{\s*"
+  syntax match texMathDelim contained conceal cchar=} "\%#=1\s*\\}"
+  syntax match texMathDelim contained conceal cchar={ "\%#=1\\left\\{\s*"
+  syntax match texMathDelim contained conceal cchar=} "\%#=1\s*\\right\\}"
+  syntax match texMathDelim contained conceal cchar={ "\%#=1\\lbrace\>\s*"
+  syntax match texMathDelim contained conceal cchar=} "\%#=1\s*\\rbrace\>"
+  syntax match texMathDelim contained conceal cchar=⟨ "\%#=1\\langle\>\s*"
+  syntax match texMathDelim contained conceal cchar=⟩ "\%#=1\s*\\rangle\>"
+  syntax match texMathDelim contained conceal cchar=⌊ "\%#=1\\lfloor\>\s*"
+  syntax match texMathDelim contained conceal cchar=⌋ "\%#=1\s*\\rfloor\>"
+  syntax match texMathDelim contained conceal cchar=< "\%#=1\\\%([bB]igg\?l\?\|left\)<\s*"
+  syntax match texMathDelim contained conceal cchar=> "\%#=1\s*\\\%([bB]igg\?r\?\|right\)>"
+  syntax match texMathDelim contained conceal cchar=( "\%#=1\\\%([bB]igg\?l\?\|left\)(\s*"
+  syntax match texMathDelim contained conceal cchar=) "\%#=1\s*\\\%([bB]igg\?r\?\|right\))"
+  syntax match texMathDelim contained conceal cchar=[ "\%#=1\\\%([bB]igg\?l\?\|left\)\[\s*"
+  syntax match texMathDelim contained conceal cchar=] "\%#=1\s*\\\%([bB]igg\?r\?\|right\)]"
+  syntax match texMathDelim contained conceal cchar={ "\%#=1\\\%([bB]igg\?l\?\|left\)\\{\s*"
+  syntax match texMathDelim contained conceal cchar=} "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\}"
+  syntax match texMathDelim contained conceal cchar={ "\%#=1\\\%([bB]igg\?l\?\|left\)\\lbrace\>\s*"
+  syntax match texMathDelim contained conceal cchar=} "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rbrace\>"
+  syntax match texMathDelim contained conceal cchar=⌈ "\%#=1\\\%([bB]igg\?l\?\|left\)\\lceil\>\s*"
+  syntax match texMathDelim contained conceal cchar=⌉ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rceil\>"
+  syntax match texMathDelim contained conceal cchar=⌊ "\%#=1\\\%([bB]igg\?l\?\|left\)\\lfloor\>\s*"
+  syntax match texMathDelim contained conceal cchar=⌋ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rfloor\>"
+  syntax match texMathDelim contained conceal cchar=⌊ "\%#=1\\\%([bB]igg\?l\?\|left\)\\lgroup\>\s*"
+  syntax match texMathDelim contained conceal cchar=⌋ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rgroup\>"
+  syntax match texMathDelim contained conceal cchar=⎛ "\%#=1\\\%([bB]igg\?l\?\|left\)\\lmoustache\>\s*"
+  syntax match texMathDelim contained conceal cchar=⎞ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rmoustache\>"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\\\%([bB]igg\?l\?\|left\)|\s*"
+  syntax match texMathDelim contained conceal cchar=| "\%#=1\s*\\\%([bB]igg\?r\?\|right\)|"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\\\%([bB]igg\?l\?\|left\|\)\\|\s*"
+  syntax match texMathDelim contained conceal cchar=‖ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\|"
+  syntax match texMathDelim contained conceal cchar=↓ "\%#=1\\\%([bB]igg\?l\?\|left\)\\downarrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=↓ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\downarrow\>"
+  syntax match texMathDelim contained conceal cchar=⇓ "\%#=1\\\%([bB]igg\?l\?\|left\)\\Downarrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=⇓ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\Downarrow\>"
+  syntax match texMathDelim contained conceal cchar=↑ "\%#=1\\\%([bB]igg\?l\?\|left\)\\uparrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=↑ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\uparrow\>"
+  syntax match texMathDelim contained conceal cchar=↑ "\%#=1\\\%([bB]igg\?l\?\|left\)\\Uparrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=↑ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\Uparrow\>"
+  syntax match texMathDelim contained conceal cchar=↕ "\%#=1\\\%([bB]igg\?l\?\|left\)\\updownarrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=↕ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\updownarrow\>"
+  syntax match texMathDelim contained conceal cchar=⇕ "\%#=1\\\%([bB]igg\?l\?\|left\)\\Updownarrow\>\s*"
+  syntax match texMathDelim contained conceal cchar=⇕ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\Updownarrow\>"
 
   if &ambiwidth ==# 'double'
-    syntax match texMathDelim contained conceal cchar=〈 "\\\%([bB]igg\?l\?\|left\)\\langle\>\s*"
-    syntax match texMathDelim contained conceal cchar=〉 "\s*\\\%([bB]igg\?r\?\|right\)\\rangle\>"
+    syntax match texMathDelim contained conceal cchar=〈 "\%#=1\\\%([bB]igg\?l\?\|left\)\\langle\>\s*"
+    syntax match texMathDelim contained conceal cchar=〉 "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rangle\>"
   else
-    syntax match texMathDelim contained conceal cchar=⟨ "\\\%([bB]igg\?l\?\|left\)\\langle\>\s*"
-    syntax match texMathDelim contained conceal cchar=⟩ "\s*\\\%([bB]igg\?r\?\|right\)\\rangle\>"
+    syntax match texMathDelim contained conceal cchar=⟨ "\%#=1\\\%([bB]igg\?l\?\|left\)\\langle\>\s*"
+    syntax match texMathDelim contained conceal cchar=⟩ "\%#=1\s*\\\%([bB]igg\?r\?\|right\)\\rangle\>"
   endif
 endfunction
 
@@ -2260,47 +2260,47 @@ endfunction
 
 " }}}1
 function! s:match_conceal_greek() abort " {{{1
-  syntax match texCmdGreek "\\alpha\>"      contained conceal cchar=α
-  syntax match texCmdGreek "\\beta\>"       contained conceal cchar=β
-  syntax match texCmdGreek "\\gamma\>"      contained conceal cchar=γ
-  syntax match texCmdGreek "\\delta\>"      contained conceal cchar=δ
-  syntax match texCmdGreek "\\epsilon\>"    contained conceal cchar=ϵ
-  syntax match texCmdGreek "\\varepsilon\>" contained conceal cchar=ε
-  syntax match texCmdGreek "\\zeta\>"       contained conceal cchar=ζ
-  syntax match texCmdGreek "\\eta\>"        contained conceal cchar=η
-  syntax match texCmdGreek "\\theta\>"      contained conceal cchar=θ
-  syntax match texCmdGreek "\\vartheta\>"   contained conceal cchar=ϑ
-  syntax match texCmdGreek "\\iota\>"       contained conceal cchar=ι
-  syntax match texCmdGreek "\\kappa\>"      contained conceal cchar=κ
-  syntax match texCmdGreek "\\lambda\>"     contained conceal cchar=λ
-  syntax match texCmdGreek "\\mu\>"         contained conceal cchar=μ
-  syntax match texCmdGreek "\\nu\>"         contained conceal cchar=ν
-  syntax match texCmdGreek "\\xi\>"         contained conceal cchar=ξ
-  syntax match texCmdGreek "\\pi\>"         contained conceal cchar=π
-  syntax match texCmdGreek "\\varpi\>"      contained conceal cchar=ϖ
-  syntax match texCmdGreek "\\rho\>"        contained conceal cchar=ρ
-  syntax match texCmdGreek "\\varrho\>"     contained conceal cchar=ϱ
-  syntax match texCmdGreek "\\sigma\>"      contained conceal cchar=σ
-  syntax match texCmdGreek "\\varsigma\>"   contained conceal cchar=ς
-  syntax match texCmdGreek "\\tau\>"        contained conceal cchar=τ
-  syntax match texCmdGreek "\\upsilon\>"    contained conceal cchar=υ
-  syntax match texCmdGreek "\\phi\>"        contained conceal cchar=ϕ
-  syntax match texCmdGreek "\\varphi\>"     contained conceal cchar=φ
-  syntax match texCmdGreek "\\chi\>"        contained conceal cchar=χ
-  syntax match texCmdGreek "\\psi\>"        contained conceal cchar=ψ
-  syntax match texCmdGreek "\\omega\>"      contained conceal cchar=ω
-  syntax match texCmdGreek "\\Gamma\>"      contained conceal cchar=Γ
-  syntax match texCmdGreek "\\Delta\>"      contained conceal cchar=Δ
-  syntax match texCmdGreek "\\Theta\>"      contained conceal cchar=Θ
-  syntax match texCmdGreek "\\Lambda\>"     contained conceal cchar=Λ
-  syntax match texCmdGreek "\\Xi\>"         contained conceal cchar=Ξ
-  syntax match texCmdGreek "\\Pi\>"         contained conceal cchar=Π
-  syntax match texCmdGreek "\\Sigma\>"      contained conceal cchar=Σ
-  syntax match texCmdGreek "\\Upsilon\>"    contained conceal cchar=Υ
-  syntax match texCmdGreek "\\Phi\>"        contained conceal cchar=Φ
-  syntax match texCmdGreek "\\Chi\>"        contained conceal cchar=Χ
-  syntax match texCmdGreek "\\Psi\>"        contained conceal cchar=Ψ
-  syntax match texCmdGreek "\\Omega\>"      contained conceal cchar=Ω
+  syntax match texCmdGreek "\%#=1\\alpha\>"      contained conceal cchar=α
+  syntax match texCmdGreek "\%#=1\\beta\>"       contained conceal cchar=β
+  syntax match texCmdGreek "\%#=1\\gamma\>"      contained conceal cchar=γ
+  syntax match texCmdGreek "\%#=1\\delta\>"      contained conceal cchar=δ
+  syntax match texCmdGreek "\%#=1\\epsilon\>"    contained conceal cchar=ϵ
+  syntax match texCmdGreek "\%#=1\\varepsilon\>" contained conceal cchar=ε
+  syntax match texCmdGreek "\%#=1\\zeta\>"       contained conceal cchar=ζ
+  syntax match texCmdGreek "\%#=1\\eta\>"        contained conceal cchar=η
+  syntax match texCmdGreek "\%#=1\\theta\>"      contained conceal cchar=θ
+  syntax match texCmdGreek "\%#=1\\vartheta\>"   contained conceal cchar=ϑ
+  syntax match texCmdGreek "\%#=1\\iota\>"       contained conceal cchar=ι
+  syntax match texCmdGreek "\%#=1\\kappa\>"      contained conceal cchar=κ
+  syntax match texCmdGreek "\%#=1\\lambda\>"     contained conceal cchar=λ
+  syntax match texCmdGreek "\%#=1\\mu\>"         contained conceal cchar=μ
+  syntax match texCmdGreek "\%#=1\\nu\>"         contained conceal cchar=ν
+  syntax match texCmdGreek "\%#=1\\xi\>"         contained conceal cchar=ξ
+  syntax match texCmdGreek "\%#=1\\pi\>"         contained conceal cchar=π
+  syntax match texCmdGreek "\%#=1\\varpi\>"      contained conceal cchar=ϖ
+  syntax match texCmdGreek "\%#=1\\rho\>"        contained conceal cchar=ρ
+  syntax match texCmdGreek "\%#=1\\varrho\>"     contained conceal cchar=ϱ
+  syntax match texCmdGreek "\%#=1\\sigma\>"      contained conceal cchar=σ
+  syntax match texCmdGreek "\%#=1\\varsigma\>"   contained conceal cchar=ς
+  syntax match texCmdGreek "\%#=1\\tau\>"        contained conceal cchar=τ
+  syntax match texCmdGreek "\%#=1\\upsilon\>"    contained conceal cchar=υ
+  syntax match texCmdGreek "\%#=1\\phi\>"        contained conceal cchar=ϕ
+  syntax match texCmdGreek "\%#=1\\varphi\>"     contained conceal cchar=φ
+  syntax match texCmdGreek "\%#=1\\chi\>"        contained conceal cchar=χ
+  syntax match texCmdGreek "\%#=1\\psi\>"        contained conceal cchar=ψ
+  syntax match texCmdGreek "\%#=1\\omega\>"      contained conceal cchar=ω
+  syntax match texCmdGreek "\%#=1\\Gamma\>"      contained conceal cchar=Γ
+  syntax match texCmdGreek "\%#=1\\Delta\>"      contained conceal cchar=Δ
+  syntax match texCmdGreek "\%#=1\\Theta\>"      contained conceal cchar=Θ
+  syntax match texCmdGreek "\%#=1\\Lambda\>"     contained conceal cchar=Λ
+  syntax match texCmdGreek "\%#=1\\Xi\>"         contained conceal cchar=Ξ
+  syntax match texCmdGreek "\%#=1\\Pi\>"         contained conceal cchar=Π
+  syntax match texCmdGreek "\%#=1\\Sigma\>"      contained conceal cchar=Σ
+  syntax match texCmdGreek "\%#=1\\Upsilon\>"    contained conceal cchar=Υ
+  syntax match texCmdGreek "\%#=1\\Phi\>"        contained conceal cchar=Φ
+  syntax match texCmdGreek "\%#=1\\Chi\>"        contained conceal cchar=Χ
+  syntax match texCmdGreek "\%#=1\\Psi\>"        contained conceal cchar=Ψ
+  syntax match texCmdGreek "\%#=1\\Omega\>"      contained conceal cchar=Ω
 endfunction
 
 " }}}1
