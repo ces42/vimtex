@@ -1298,7 +1298,7 @@ endfunction
 function! vimtex#syntax#core#conceal_cmd_pairs(cmd, pairs) abort " {{{1
   for [l:from, l:to] in a:pairs
     execute 'syntax match texMathSymbol'
-          \ '"\\' . a:cmd . '\%({\s*' . l:from . '\s*}\|\s\+' . l:from . '\)"'
+          \ '"\%#=1\\' . a:cmd . '\%({\s*' . l:from . '\s*}\|\s\+' . l:from . '\)"'
           \ 'contained conceal cchar=' . l:to
   endfor
 endfunction
@@ -1569,7 +1569,7 @@ function! s:match_math_symbols() abort " {{{1
 
   for [l:cmd, l:symbol] in s:cmd_symbols
     execute 'syntax match texMathSymbol'
-          \ '"\\' . l:cmd . '\ze\%(\>\|[_^]\)"'
+          \ '"\%#=1\\' . l:cmd . '\ze\%(\>\|[_^]\)"'
           \ 'contained conceal cchar=' . l:symbol
   endfor
 
@@ -1986,20 +1986,20 @@ let s:cmd_pairs_dict = {
 function! s:match_math_fracs() abort " {{{1
   if !g:vimtex_syntax_conceal.math_fracs | return | endif
 
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(2\|{2}\)" contained conceal cchar=½
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(3\|{3}\)" contained conceal cchar=⅓
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(3\|{3}\)" contained conceal cchar=⅔
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(4\|{4}\)" contained conceal cchar=¼
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(5\|{5}\)" contained conceal cchar=⅕
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(5\|{5}\)" contained conceal cchar=⅖
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(5\|{5}\)" contained conceal cchar=⅗
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(4\|{4}\)\s*\%(5\|{5}\)" contained conceal cchar=⅘
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(6\|{6}\)" contained conceal cchar=⅙
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(6\|{6}\)" contained conceal cchar=⅚
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(8\|{8}\)" contained conceal cchar=⅛
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(8\|{8}\)" contained conceal cchar=⅜
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(8\|{8}\)" contained conceal cchar=⅝
-  syntax match texMathSymbol "\\[dt]\?frac\s*\%(7\|{7}\)\s*\%(8\|{8}\)" contained conceal cchar=⅞
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(2\|{2}\)" contained conceal cchar=½
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(3\|{3}\)" contained conceal cchar=⅓
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(3\|{3}\)" contained conceal cchar=⅔
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(4\|{4}\)" contained conceal cchar=¼
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(5\|{5}\)" contained conceal cchar=⅕
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(2\|{2}\)\s*\%(5\|{5}\)" contained conceal cchar=⅖
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(5\|{5}\)" contained conceal cchar=⅗
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(4\|{4}\)\s*\%(5\|{5}\)" contained conceal cchar=⅘
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(6\|{6}\)" contained conceal cchar=⅙
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(6\|{6}\)" contained conceal cchar=⅚
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(1\|{1}\)\s*\%(8\|{8}\)" contained conceal cchar=⅛
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(3\|{3}\)\s*\%(8\|{8}\)" contained conceal cchar=⅜
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(5\|{5}\)\s*\%(8\|{8}\)" contained conceal cchar=⅝
+  syntax match texMathSymbol "\%#=1\\[dt]\?frac\s*\%(7\|{7}\)\s*\%(8\|{8}\)" contained conceal cchar=⅞
 endfunction
 
 " }}}1
