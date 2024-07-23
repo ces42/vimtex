@@ -54,8 +54,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
 
   " E.g.:  \$ \& \% \# \{ \} \_ \S \P
   syntax match texSpecialChar "\~"
-  syntax match texSpecialChar "\%#=1\\ "
-  syntax match texSpecialChar "\%#=1\\[$&%#{}_@,;:!>]"
+  syntax match texSpecialChar "\%#=1\\[ $&%#{}_@,;:!>]"
   syntax match texSpecialChar "\%#=1\\[SP@]\ze[^a-zA-Z@]"
   syntax match texSpecialChar "\%#=1\^\^\%(\S\|[0-9a-f]\{2}\)"
 
