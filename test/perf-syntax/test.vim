@@ -28,12 +28,14 @@ nnoremap q :qall!<cr>
 "set regexpengine=1
 
 let g:vimtex_syntax_conceal_disable = 1
+"let g:vimtex_syntax_conceal_disable = 0
+"set conceallevel=2
 let g:vimtex_syntax_match_unicode = 0
 silent edit main.tex
 call Scroll()
 
 
-let s:lines = split(execute('syntime report'), "\n")
-call writefile(s:lines, "out.log")
+let lines = split(execute('syntime report'), "\n")
+call writefile(lines, "out.log")
 
 quitall
