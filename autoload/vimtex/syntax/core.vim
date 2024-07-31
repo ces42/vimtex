@@ -486,7 +486,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   " {{{2 Zone: Math
 
   " Define math region group
-  call vimtex#syntax#core#new_arg('texMathGroup', {'contains': '@texClusterMath'})
+  call vimtex#syntax#core#new_arg('texMathGroup', {'opts': 'transparent', 'contains': ''})
 
   " Define math environment boundaries
   syntax match texCmdMathEnv "\%#=1\v\\%(begin|end)>" contained nextgroup=texMathEnvArgName
