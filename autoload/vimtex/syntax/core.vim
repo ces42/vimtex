@@ -558,8 +558,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   call vimtex#syntax#core#new_arg('texMathZoneEnsured', {'contains': '@texClusterMath'})
 
   " Bad/Mismatched math
-  call s:match_texMathError()
-
+  syntax match texMathError "\%#=1\\[\])]" display
 
   " Text Inside Math regions
   for l:re_cmd in [
@@ -685,12 +684,6 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
         \@NoSpell
 
 endfunction
-
-function! s:match_texMathError() abort
-  syntax match texMathError "\%#=1\\[\])]" display
-  syntax match texMathError "\%#=1\\end\s*{\s*\(array\|[bBpvV]matrix\|split\|smallmatrix\)\s*}" display
-endfunction
-
 
 " }}}1
 function! vimtex#syntax#core#init_post() abort " {{{1
@@ -1231,11 +1224,10 @@ function! vimtex#syntax#core#new_env(cfg) abort " {{{1
 
     if ! empty(s:custom_math_envs)
       syntax clear texMathError
-      call s:match_texMathError()
       syntax clear texMathZoneEnv
     endif
     let s:custom_math_envs += [l:env_name]
-    execute 'syntax match texMathError "\%#=1\\end{\%(' . join(s:custom_math_envs, '\|') . '\)}"'
+    execute 'syntax match texMathError "\%#=1\\\%()\|]\|end{\%(' . join(s:custom_math_envs, '\|') . '\)}\)" display'
 
     execute 'syntax region texMathZoneEnv'
           \ 'start="\%#=1\\begin{\z(' . join(s:custom_math_envs, '\|') . '\)}"'
