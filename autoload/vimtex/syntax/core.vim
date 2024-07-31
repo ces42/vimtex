@@ -227,8 +227,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
         \|%(page|eq|v)?ref
         \)>"
 
-  syntax match texCmdRef nextgroup=texRefOpt,texRefArg skipwhite skipnl "\%#=1\\cite\>"
-  syntax match texCmdRef nextgroup=texRefOpt,texRefArg skipwhite skipnl "\%#=1\\cite[tp]\>\*\?"
+  syntax match texCmdRef nextgroup=texRefOpt,texRefArg skipwhite skipnl "\%#=1\v\\cite%(>|[tp]>\*?)"
   call vimtex#syntax#core#new_opt('texRefOpt', {'next': 'texRefOpt,texRefArg'})
   call vimtex#syntax#core#new_arg('texRefArg', {'contains': 'texComment,@NoSpell'})
 
@@ -243,10 +242,8 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
 
   " Sections and parts
   syntax match texCmdPart "\%#=1\\\(front\|main\|back\)matter\>"
-  syntax match texCmdPart "\%#=1\\part\>"                    nextgroup=texPartArgTitle
-  syntax match texCmdPart "\%#=1\\chapter\>\*\?"             nextgroup=texPartArgTitle
-  syntax match texCmdPart "\%#=1\v\\%(sub)*section>\*?"      nextgroup=texPartArgTitle
-  syntax match texCmdPart "\%#=1\v\\%(sub)?paragraph>"       nextgroup=texPartArgTitle
+  syntax match texCmdPart "\%#=1\v\\%(part|%(sub)?paragraph)>"                    nextgroup=texPartArgTitle
+  syntax match texCmdPart "\%#=1\v\\%(%(sub)*section|chapter)>\*?"      nextgroup=texPartArgTitle
   syntax match texCmdPart "\%#=1\v\\add%(part|chap|sec)>\*?" nextgroup=texPartArgTitle
   call vimtex#syntax#core#new_arg('texPartArgTitle')
 
