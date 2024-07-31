@@ -9,9 +9,9 @@ scriptencoding utf-8
 
 function! vimtex#syntax#core#init_rules() abort " {{{1
   " Operators and similar
-  syntax match texMathOper "\%#=1[-+=/<>|]" contained
-  syntax match texMathSuperSub "\%#=1[_^]" contained
-  syntax match texMathDelim contained "\%#=1[()[\]]"
+  syntax match texMathOper "\%#=1[-+=/<>|]" contained display
+  syntax match texMathSuperSub "\%#=1[_^]" contained display
+  syntax match texMathDelim contained "\%#=1[()[\]]" display
   " {{{2 Define main syntax clusters
 
   syntax cluster texClusterOpt contains=
@@ -58,7 +58,7 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
   syntax match texSpecialChar "\%#=1\\[SP@]\ze[^a-zA-Z@]"
   syntax match texSpecialChar "\%#=1\^\^\%(\S\|[0-9a-f]\{2}\)"
 
-  syntax match texError "\%#=1[_^]"
+  syntax match texError "\%#=1[_^]" display
 
   " }}}2
   " {{{2 Commands: general
@@ -687,8 +687,8 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
 endfunction
 
 function! s:match_texMathError() abort
-  syntax match texMathError "\%#=1\\[\])]"
-  syntax match texMathError "\%#=1\\end\s*{\s*\(array\|[bBpvV]matrix\|split\|smallmatrix\)\s*}"
+  syntax match texMathError "\%#=1\\[\])]" display
+  syntax match texMathError "\%#=1\\end\s*{\s*\(array\|[bBpvV]matrix\|split\|smallmatrix\)\s*}" display
 endfunction
 
 
