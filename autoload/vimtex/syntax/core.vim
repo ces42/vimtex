@@ -389,9 +389,9 @@ function! vimtex#syntax#core#init_rules() abort " {{{1
 
   " Do not check URLs and acronyms in comments
   " Source: https://github.com/lervag/vimtex/issues/562
-  syntax match texCommentURL "\w\+:\/\/[^[:space:]]\+"
+  syntax match texCommentURL "\%#=1\w\+:\/\/[^[:space:]]\+"
         \ containedin=texComment contained contains=@NoSpell
-  syntax match texCommentAcronym "\v<(\u|\d){3,}s?>"
+  syntax match texCommentAcronym "\%#=1\v<(\u|\d){3,}s?>"
         \ containedin=texComment contained contains=@NoSpell
 
   " Todo and similar within comments
