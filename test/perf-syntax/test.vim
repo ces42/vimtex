@@ -33,6 +33,10 @@ let g:vimtex_syntax_conceal_disable = 1
 let g:vimtex_syntax_match_unicode = 0
 silent edit main.tex
 call Scroll()
+silent edit main2.tex
+call Scroll()
+silent edit main3.tex
+call Scroll()
 
 
 let lines = split(execute('syntime report'), "\n")
